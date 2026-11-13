@@ -1,0 +1,20 @@
+# Optional: lets you create the Render service from this file (Blueprint). You can also set everything by hand.
+services:
+  - type: web
+    name: referpay
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: DATABASE_URL      # paste your Neon connection string
+        sync: false
+      - key: PAYSTACK_SECRET_KEY   # start with your sk_test_... key
+        sync: false
